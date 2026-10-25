@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "AI Answer Analyser",
+  "version": "0.1.0",
+  "description": "Flags self-promotion in AI answers and compares claims with the pages they cite.",
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Analyse this AI answer"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://www.google.com/search*",
+        "https://www.perplexity.ai/*",
+        "https://chat.deepseek.com/*",
+        "https://www.kimi.com/*",
+        "https://kimi.com/*",
+        "https://kimi.moonshot.cn/*",
+        "https://www.kimi.ai/*",
+        "https://chat.qwen.ai/*",
+        "https://qwen.ai/*",
+        "https://chat.qwenlm.ai/*"
+      ],
+      "js": ["lib/analyse.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
